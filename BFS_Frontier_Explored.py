@@ -1,21 +1,22 @@
-from collections import deque
+from queue import Queue
 import networkx as nx
 
 def bfs_target(graph, start_node, target):
-    frontier = deque([(start_node, [start_node])])
+    frontier = Queue()
+    frontier.put((start_node, [start_node]))
     explored = set()
     
-    while frontier:
-        current_node, path = frontier.popleft()
-
+    while not frontier.empty():
+        current_node, path = frontier.get()
+        
         if current_node == target:
             return f"Target '{target}' found, path: {'->'.join(path)}"
-        else:
-            for neighbor in graph.neighbors(current_node):
-                if neighbor not in explored:
-                    explored.add(neighbor)
-                    new_path = path + [neighbor]
-                    frontier.append((neighbor, new_path))
+        
+        for neighbor in graph.neighbors(current_node):
+            if neighbor not in explored:
+                explored.add(neighbor)
+                new_path = path + [neighbor]
+                frontier.put((neighbor, new_path))
                 
     return f"Target '{target}' not found"
 
