@@ -10,13 +10,15 @@ def bfs_target(graph, start_node, target):
         current_node, path = frontier.get()
         
         if current_node == target:
-            return f"Target '{target}' found, path: {'->'.join(path)}"
+            return f"Target '{target}' found, path: {' -> '.join(path)}"
         
-        for neighbor in graph.neighbors(current_node):
-            if neighbor not in explored:
-                explored.add(neighbor)
-                new_path = path + [neighbor]
-                frontier.put((neighbor, new_path))
+        if current_node not in explored:
+            explored.add(current_node)
+        
+            for neighbor in graph.neighbors(current_node):
+                if neighbor not in explored:
+                    new_path = path + [neighbor]
+                    frontier.put((neighbor, new_path))
                 
     return f"Target '{target}' not found"
 

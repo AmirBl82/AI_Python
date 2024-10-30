@@ -10,7 +10,7 @@ def ucs_target(graph, start_node,target):
         cost, current_node, path = frontier.get()
 
         if current_node == target:
-            return f"Target {target} found, path:{'->'.join(path)}, cost:{cost}"
+            return f"Target {target} found, path:{' -> '.join(path)}, cost:{cost}"
         
         if current_node not in explored:
             explored.add(current_node)

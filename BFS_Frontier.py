@@ -1,16 +1,16 @@
-from collections import deque
+from queue import Queue
 import networkx as nx
 def bfs_target(graph,start_node,target):
-    frontier = deque([start_node])
+    frontier = Queue([start_node])
 
     while frontier:
-        current_node = frontier.popleft()
+        current_node = frontier.get()
 
         if current_node == target:
             return f"Target '{target} found"
         else:
             for neighbor in graph.neighbors(current_node):
-                frontier.append(neighbor)
+                frontier.put(neighbor)
                 
     
     return f"Target '{target}' not found"
