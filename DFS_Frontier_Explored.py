@@ -8,7 +8,7 @@ def dfs_target(graph, start_node, target):
     explored = set()
 
     while frontier:
-        current_node, path = frontier.popleft()
+        current_node, path = frontier.pop()
 
         if current_node == target:
             return f"Target {target} found, path: {'->'.join(path)}"
