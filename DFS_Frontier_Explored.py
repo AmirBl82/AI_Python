@@ -8,7 +8,7 @@ def dfs_target(graph, start_node, target):
     explored = set()
 
     while frontier:
-        current_node, path = frontier.pop()
+        current_node, path = frontier.popleft()
 
         if current_node == target:
             return f"Target {target} found, path: {'->'.join(path)}"
@@ -29,4 +29,4 @@ edges = [('A','B'),('A','C'),
          ('C','D'),('C','E'),('D','E')]
 Graph.add_edges_from(edges)
 
-print(dfs_target(Graph,'A','E'))
+print(dfs_target(Graph,'A','D'))
