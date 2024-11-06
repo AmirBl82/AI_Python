@@ -30,4 +30,4 @@ edges = [('A', 'B'), ('A', 'C'),
 Graph.add_edges_from(edges)
 
 print(dfs_target(Graph, 'A', 'C'))
-
+print(dfs_target(Graph, 'A', 'D'))
