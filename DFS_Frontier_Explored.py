@@ -13,15 +13,14 @@ def dfs_target(graph, start_node, target):
 
         if current_node == target:
             return f"Target {target} found, path: {'->'.join(path)}"
-        
+
         if current_node not in explored:
             explored.add(current_node)
+            
+            for neighbor in sorted(graph.neighbors(current_node), reverse=True):
+                new_path = path + [neighbor]
+                frontier.put((neighbor, new_path))
 
-            for neighbor in graph.neighbors(current_node):
-                if neighbor not in explored:
-                    new_path = path + [neighbor]
-                    frontier.put((neighbor, new_path))
-    
     return f"Target {target} not found"
 
 Graph = nx.Graph()
@@ -30,4 +29,5 @@ edges = [('A', 'B'), ('A', 'C'),
          ('C', 'D'), ('C', 'E'), ('D', 'E')]
 Graph.add_edges_from(edges)
 
-print(dfs_target(Graph, 'A', 'D'))
+print(dfs_target(Graph, 'A', 'C'))
+
